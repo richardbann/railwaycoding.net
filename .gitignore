@@ -1,2 +1,4 @@
 __pycache__
 .sass-cache
+.env
+.env-files

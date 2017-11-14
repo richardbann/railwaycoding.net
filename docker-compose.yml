@@ -1,11 +1,14 @@
 version: "3"
 
 services:
-  pelican:
+  nginx:
     build: .
     volumes:
-      - "./site:/site"
-    working_dir: /site
-    user: ${USER}
-    stop_signal: SIGINT
-    command: ["pelican", "-r"]
+      - "./site/output:/site/output"
+      - "./.env-files/railwaycoding.net.crt:/.env-files/railwaycoding.net.crt"
+      - "./.env-files/railwaycoding.net.key:/.env-files/railwaycoding.net.key"
+    stop_signal: SIGTERM
+    command: ["nginx", "-g", "daemon off;"]
+    ports:
+      - "80:80"
+      - "443:443"

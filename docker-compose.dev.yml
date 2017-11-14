@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  pelican:
+    build: .
+    volumes:
+      - "./.env-files:/.env-files"
+      - "./nginx.conf:/etc/nginx/nginx.conf"
+      - "./site:/site"
+    stop_signal: SIGINT
+    command: ["pelican", "-r"]
+
+  nginx:
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf"
+      - "./.env-files/railwaycoding.dev.crt:/.env-files/railwaycoding.net.crt"
+      - "./.env-files/railwaycoding.dev.key:/.env-files/railwaycoding.net.key"

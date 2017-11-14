@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Richard Bann'
 SITENAME = 'railwaycoding.net'
-SITEURL = ''
-RELATIVE_URLS = True  # locally only
+SITEURL = 'https://railwaycoding.dev'
+RELATIVE_URLS = False
 
 PATH = 'content'
 PAGE_PATHS = ['pages']
