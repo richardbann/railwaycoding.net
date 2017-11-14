@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>railwaycoding.net</title>
+  <link href="./theme/css/railway.css" rel="stylesheet">
+</head>
+
+<body>
+  <h1>reStructuredText Markup Specification</h1>
+  <div class="section" id="quick-syntax-overview">
+<h2>Quick Syntax Overview</h2>
+<div class="section" id="paragraphs">
+<h3>Paragraphs</h3>
+<p>Paragraphs contain text and may contain inline markup:
+<em>emphasis</em>, <strong>strong emphasis</strong>, <cite>interpreted text</cite>, <tt class="docutils literal">inline
+literals</tt>, standalone hyperlinks (<a class="reference external" href="http://www.python.org">http://www.python.org</a>),
+external hyperlinks (<a class="reference external" href="http://www.python.org">Python</a>), internal cross-references
+(<a class="reference external" href="./restructuredtext-directives.html">example</a>), footnote references (<a class="footnote-reference" href="#id3" id="id1">[1]</a>), citation references
+(<a class="citation-reference" href="#cit2002" id="id2">[CIT2002]</a>), substitution references (example), and <span class="target" id="inline-internal-targets">inline internal targets</span>,
+which can be referred later: <a class="reference internal" href="#inline-internal-targets">inline internal targets</a>.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>First footnote</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="cit2002" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[CIT2002]</a></td><td>Citation</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="options-list">
+<h3>Options list</h3>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-a</span></kbd></td>
+<td>command-line option &quot;a&quot;</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-b <var>file</var></span></kbd></td>
+<td>options can have arguments
+and long descriptions</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--long</span></kbd></td>
+<td>options can be long also</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--input=<var>file</var></span></kbd></td>
+<td>long options can also have
+arguments</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">/V</span></kbd></td>
+<td>DOS/VMS-style options too</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="literal-blocks">
+<h3>Literal Blocks</h3>
+<p>Literal blocks are either indented or line-prefix-quoted blocks,
+and indicated with a double-colon (&quot;::&quot;) at the end of the
+preceding paragraph (right here --&gt;):</p>
+<pre class="literal-block">
+if literal_block:
+    text = 'is left as-is'
+    spaces_and_linebreaks = 'are preserved'
+    markup_processing = None
+</pre>
+</div>
+<div class="section" id="block-quotes">
+<h3>Block Quotes</h3>
+<p>Block quotes consist of indented body elements:</p>
+<blockquote>
+<p>This theory, that is mine, is mine.</p>
+<p class="attribution">&mdash;Anne Elk (Miss)</p>
+</blockquote>
+</div>
+<div class="section" id="grid-tables">
+<h3>Grid Tables</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="52%" />
+<col width="26%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Header row, column 1</th>
+<th class="head">Header 2</th>
+<th class="head">Header 3</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>body row 1, column 1</td>
+<td>column 2</td>
+<td>column 3</td>
+</tr>
+<tr><td>body row 2</td>
+<td colspan="2">Cells may span</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simple-tables">
+<h3>Simple Tables</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Header row, column 1</th>
+<th class="head">Header 2</th>
+<th class="head">Header 3</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>body row 1, column 1</td>
+<td>column 2</td>
+<td>column 3</td>
+</tr>
+<tr><td>body row 2</td>
+<td colspan="2">Cells may span columns</td>
+</tr>
+</tbody>
+</table>
+<p>Another table</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="31%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head" colspan="2">Inputs</th>
+<th class="head">Output</th>
+</tr>
+<tr><th class="head">A</th>
+<th class="head">B</th>
+<th class="head">A or B</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr><td>True</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr><td>False</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr><td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="transitions">
+<h3>Transitions</h3>
+<p>Para.</p>
+<hr class="docutils" />
+<p>Para.</p>
+</div>
+<div class="section" id="line-blocks">
+<h3>Line Blocks</h3>
+<div class="line-block">
+<div class="line">Lend us a couple of bob till Thursday.</div>
+<div class="line">I'm absolutely skint.</div>
+<div class="line">But I'm expecting a postal order and I can pay you back
+as soon as it comes.</div>
+<div class="line">Love, Ewan.</div>
+</div>
+<p>Take it away, Eric the Orchestra Leader!</p>
+<blockquote>
+<div class="line-block">
+<div class="line">A one, two, a one two three four</div>
+<div class="line"><br /></div>
+<div class="line">Half a bee, philosophically,</div>
+<div class="line-block">
+<div class="line">must, <em>ipso facto</em>, half not be.</div>
+</div>
+<div class="line">But half the bee has got to be,</div>
+<div class="line-block">
+<div class="line"><em>vis a vis</em> its entity.  D'you see?</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">But can a bee be said to be</div>
+<div class="line-block">
+<div class="line">or not to be an entire bee,</div>
+<div class="line-block">
+<div class="line">when half the bee is not a bee,</div>
+<div class="line-block">
+<div class="line">due to some ancient injury?</div>
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="line">Singing...</div>
+</div>
+</blockquote>
+</div>
+</div>
+
+</body>

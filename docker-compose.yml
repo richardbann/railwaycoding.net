@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  pelican:
+    build: .
+    volumes:
+      - "./site:/site"
+    working_dir: /site
+    user: ${USER}
+    stop_signal: SIGINT
+    command: ["pelican", "-r"]
