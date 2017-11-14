@@ -7,16 +7,18 @@ usr := $(shell id -u):$(shell id -g)
 run:
 	docker-compose run --rm pelican bash
 
-.PHONY: build
-build:
+.PHONY: build-dev
+build-dev:
 	rm -rf site/output/*
 	docker-compose run --rm -u $(usr) -w "/site" pelican pelican
 
-.PHONY: deploy
-deploy:
+.PHONY: build-prod
+build-prod:
 	rm -rf site/deploy/*
 	docker-compose run --rm -u $(usr) -w "/site" pelican pelican -s publishconf.py -o deploy
-	git push
+
+.PHONY: deploy
+deploy:
 	ssh railwaycoding.net "cd /opt/railwaycoding.net && git pull"
 
 .PHONY: gencerts
