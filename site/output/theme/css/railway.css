@@ -173,7 +173,7 @@ tbody tr:nth-child(odd) td, tbody tr:nth-child(odd) th {
   padding: .3rem;
 }
 
-.attention, .caution, .warning .admonition  {
+.attention.admonition, .caution.admonition, .warning.admonition  {
   background-color: #f3f3f3;
 }
 .attention > .admonition-title, .caution > .admonition-title, .warning > .admonition-title {
