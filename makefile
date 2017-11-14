@@ -9,13 +9,15 @@ run:
 
 .PHONY: build
 build:
-	rm -rf site/output
+	rm -rf site/output/*
 	docker-compose run --rm -u $(usr) -w "/site" pelican pelican
 
 .PHONY: deploy
 deploy:
-	rm -rf site/deploy
+	rm -rf site/deploy/*
 	docker-compose run --rm -u $(usr) -w "/site" pelican pelican -s publishconf.py -o deploy
+	git push
+	ssh railwaycoding.net "cd /opt/railwaycoding.net && git pull"
 
 .PHONY: gencerts
 COMMON_NAME := railwaycoding.dev
