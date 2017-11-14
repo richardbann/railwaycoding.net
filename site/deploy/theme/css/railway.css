@@ -106,7 +106,7 @@ blockquote {
   border-left: .25rem solid #e5e5e5;
 }
 
-blockquote, .admonition p:last-child {
+blockquote p:last-child {
   margin-bottom: 0;
 }
 
@@ -159,18 +159,20 @@ tbody tr:nth-child(odd) td, tbody tr:nth-child(odd) th {
 .admonition {
   background-color: #f0f0f0;
   margin-bottom: .7rem;
-  /*border: .2rem solid #c0c0c0;*/
+}
+
+.admonition p {
+  padding: .3rem;
+}
+
+.admonition p:last-child {
+  margin-bottom: 0;
 }
 
 .admonition-title {
   background-color: #c0c0c0;
   margin: 0;
   font-weight: bold;
-  /*border-bottom: .2rem solid #c0c0c0;*/
-}
-
-.admonition p {
-  padding: .3rem;
 }
 
 .attention.admonition, .caution.admonition, .warning.admonition  {
@@ -195,4 +197,37 @@ tbody tr:nth-child(odd) td, tbody tr:nth-child(odd) th {
   padding-right: 1rem;
   margin-left:  auto;
   margin-right: auto;
+}
+
+/* literal blocks and code */
+.literal-block, .highlight {
+  overflow-x: auto;
+}
+
+.highlighttable {
+  width: 100%;
+}
+
+td.linenos, td.code {
+  max-width: 0;
+  vertical-align: top;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+}
+
+td.linenos {
+  max-width: 5rem;
+}
+
+td.code {
+  width: 100%;
+}
+
+.highlighttable pre {
+  margin: 0;
+}
+
+.highlighttable div {
+  padding: .2rem;
 }
