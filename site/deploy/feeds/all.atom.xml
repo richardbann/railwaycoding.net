@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>railwaycoding.net</title><link href="https://railwaycoding.net/" rel="alternate"></link><link href="https://railwaycoding.net/feeds/all.atom.xml" rel="self"></link><id>https://railwaycoding.net/</id><updated>2017-11-13T00:00:00+01:00</updated><entry><title>reStructuredText Markup Specification</title><link href="https://railwaycoding.net/restructuredtext-markup-specification.html" rel="alternate"></link><published>2017-11-13T00:00:00+01:00</published><updated>2017-11-13T00:00:00+01:00</updated><author><name>Richard Bann</name></author><id>tag:railwaycoding.net,2017-11-13:/restructuredtext-markup-specification.html</id><summary type="html">&lt;p class="first last"&gt;ReStructuredText showcase based on
+&lt;a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html"&gt;http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html&lt;/a&gt;&lt;/p&gt;
+</summary><content type="html">&lt;div class="section" id="quick-syntax-overview"&gt;
+&lt;h2&gt;Quick Syntax Overview&lt;/h2&gt;
+&lt;div class="section" id="paragraphs"&gt;
+&lt;h3&gt;Paragraphs&lt;/h3&gt;
+&lt;p&gt;Paragraphs contain text and may contain inline markup:
+&lt;em&gt;emphasis&lt;/em&gt;, &lt;strong&gt;strong emphasis&lt;/strong&gt;, &lt;cite&gt;interpreted text&lt;/cite&gt;, &lt;tt class="docutils literal"&gt;inline
+literals&lt;/tt&gt;, standalone hyperlinks (&lt;a class="reference external" href="http://www.python.org"&gt;http://www.python.org&lt;/a&gt;),
+external hyperlinks (&lt;a class="reference external" href="http://www.python.org"&gt;Python&lt;/a&gt;), internal cross-references
+(&lt;a class="reference external" href="https://railwaycoding.net/restructuredtext-directives.html"&gt;example&lt;/a&gt;), footnote references (&lt;a class="footnote-reference" href="#id3" id="id1"&gt;[1]&lt;/a&gt;), citation references
+(&lt;a class="citation-reference" href="#cit2002" id="id2"&gt;[CIT2002]&lt;/a&gt;), substitution references (example), and &lt;span class="target" id="inline-internal-targets"&gt;inline internal targets&lt;/span&gt;,
+which can be referred later: &lt;a class="reference internal" href="#inline-internal-targets"&gt;inline internal targets&lt;/a&gt;.&lt;/p&gt;
+&lt;table class="docutils footnote" frame="void" id="id3" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label" /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;First footnote&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table class="docutils citation" frame="void" id="cit2002" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label" /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="#id2"&gt;[CIT2002]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;Citation&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="options-list"&gt;
+&lt;h3&gt;Options list&lt;/h3&gt;
+&lt;table class="docutils option-list" frame="void" rules="none"&gt;
+&lt;col class="option" /&gt;
+&lt;col class="description" /&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="option-group"&gt;
+&lt;kbd&gt;&lt;span class="option"&gt;-a&lt;/span&gt;&lt;/kbd&gt;&lt;/td&gt;
+&lt;td&gt;command-line option &amp;quot;a&amp;quot;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="option-group"&gt;
+&lt;kbd&gt;&lt;span class="option"&gt;-b &lt;var&gt;file&lt;/var&gt;&lt;/span&gt;&lt;/kbd&gt;&lt;/td&gt;
+&lt;td&gt;options can have arguments
+and long descriptions&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="option-group"&gt;
+&lt;kbd&gt;&lt;span class="option"&gt;--long&lt;/span&gt;&lt;/kbd&gt;&lt;/td&gt;
+&lt;td&gt;options can be long also&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="option-group"&gt;
+&lt;kbd&gt;&lt;span class="option"&gt;--input=&lt;var&gt;file&lt;/var&gt;&lt;/span&gt;&lt;/kbd&gt;&lt;/td&gt;
+&lt;td&gt;long options can also have
+arguments&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="option-group"&gt;
+&lt;kbd&gt;&lt;span class="option"&gt;/V&lt;/span&gt;&lt;/kbd&gt;&lt;/td&gt;
+&lt;td&gt;DOS/VMS-style options too&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="literal-blocks"&gt;
+&lt;h3&gt;Literal Blocks&lt;/h3&gt;
+&lt;p&gt;Literal blocks are either indented or line-prefix-quoted blocks,
+and indicated with a double-colon (&amp;quot;::&amp;quot;) at the end of the
+preceding paragraph (right here --&amp;gt;):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+if literal_block:
+    text = 'is left as-is'
+    spaces_and_linebreaks = 'are preserved'
+    markup_processing = None
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="block-quotes"&gt;
+&lt;h3&gt;Block Quotes&lt;/h3&gt;
+&lt;p&gt;Block quotes consist of indented body elements:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This theory, that is mine, is mine.&lt;/p&gt;
+&lt;p class="attribution"&gt;&amp;mdash;Anne Elk (Miss)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="grid-tables"&gt;
+&lt;h3&gt;Grid Tables&lt;/h3&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="52%" /&gt;
+&lt;col width="26%" /&gt;
+&lt;col width="22%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Header row, column 1&lt;/th&gt;
+&lt;th class="head"&gt;Header 2&lt;/th&gt;
+&lt;th class="head"&gt;Header 3&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;body row 1, column 1&lt;/td&gt;
+&lt;td&gt;column 2&lt;/td&gt;
+&lt;td&gt;column 3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;body row 2&lt;/td&gt;
+&lt;td colspan="2"&gt;Cells may span&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="simple-tables"&gt;
+&lt;h3&gt;Simple Tables&lt;/h3&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="50%" /&gt;
+&lt;col width="25%" /&gt;
+&lt;col width="25%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Header row, column 1&lt;/th&gt;
+&lt;th class="head"&gt;Header 2&lt;/th&gt;
+&lt;th class="head"&gt;Header 3&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;body row 1, column 1&lt;/td&gt;
+&lt;td&gt;column 2&lt;/td&gt;
+&lt;td&gt;column 3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;body row 2&lt;/td&gt;
+&lt;td colspan="2"&gt;Cells may span columns&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Another table&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="31%" /&gt;
+&lt;col width="31%" /&gt;
+&lt;col width="38%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head" colspan="2"&gt;Inputs&lt;/th&gt;
+&lt;th class="head"&gt;Output&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;th class="head"&gt;A&lt;/th&gt;
+&lt;th class="head"&gt;B&lt;/th&gt;
+&lt;th class="head"&gt;A or B&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;False&lt;/td&gt;
+&lt;td&gt;False&lt;/td&gt;
+&lt;td&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;False&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;False&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="transitions"&gt;
+&lt;h3&gt;Transitions&lt;/h3&gt;
+&lt;p&gt;Para.&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;Para.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="line-blocks"&gt;
+&lt;h3&gt;Line Blocks&lt;/h3&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Lend us a couple of bob till Thursday.&lt;/div&gt;
+&lt;div class="line"&gt;I'm absolutely skint.&lt;/div&gt;
+&lt;div class="line"&gt;But I'm expecting a postal order and I can pay you back
+as soon as it comes.&lt;/div&gt;
+&lt;div class="line"&gt;Love, Ewan.&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Take it away, Eric the Orchestra Leader!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;A one, two, a one two three four&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;Half a bee, philosophically,&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;must, &lt;em&gt;ipso facto&lt;/em&gt;, half not be.&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line"&gt;But half the bee has got to be,&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;em&gt;vis a vis&lt;/em&gt; its entity.  D'you see?&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line"&gt;But can a bee be said to be&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;or not to be an entire bee,&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;when half the bee is not a bee,&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;due to some ancient injury?&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line"&gt;Singing...&lt;/div&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content></entry><entry><title>reStructuredText Directives</title><link href="https://railwaycoding.net/restructuredtext-directives.html" rel="alternate"></link><published>2017-11-12T00:00:00+01:00</published><updated>2017-11-12T00:00:00+01:00</updated><author><name>Richard Bann</name></author><id>tag:railwaycoding.net,2017-11-12:/restructuredtext-directives.html</id><summary type="html">&lt;p class="first last"&gt;ReStructuredText showcase based on
+&lt;a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html"&gt;official directives documentation&lt;/a&gt;.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Directives have the following syntax:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
++-------+-------------------------------+
+| &amp;quot;.. &amp;quot; | directive type &amp;quot;::&amp;quot; directive |
++-------+ block                         |
+        |                               |
+        +-------------------------------+
+&lt;/pre&gt;
+&lt;div class="section" id="admonitions"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;1&amp;nbsp;&amp;nbsp;&amp;nbsp;Admonitions&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="admonition attention"&gt;
+&lt;p class="first admonition-title"&gt;Attention!&lt;/p&gt;
+&lt;p&gt;First line
+Second line&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Can have markup&lt;/li&gt;
+&lt;li&gt;Can have more paragraphs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class="last"&gt;Just like here&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonition caution"&gt;
+&lt;p class="first admonition-title"&gt;Caution!&lt;/p&gt;
+&lt;p class="last"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Quisque eget est eget odio vulputate accumsan.
+Curabitur tincidunt varius venenatis.
+Cras scelerisque sagittis erat vel imperdiet.
+In pretium vitae nibh et dictum.
+Ut et ullamcorper enim.
+Vivamus ultrices, odio vitae dapibus aliquet,
+magna mi iaculis justo, at malesuada neque sem non.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonition danger"&gt;
+&lt;p class="first admonition-title"&gt;!DANGER!&lt;/p&gt;
+&lt;p class="last"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Quisque eget est eget odio vulputate accumsan.
+Curabitur tincidunt varius venenatis.
+Cras scelerisque sagittis erat vel imperdiet.
+In pretium vitae nibh et dictum.
+Ut et ullamcorper enim.
+Vivamus ultrices, odio vitae dapibus aliquet,
+magna mi iaculis justo, at malesuada neque sem non.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonition error"&gt;
+&lt;p class="first admonition-title"&gt;Error&lt;/p&gt;
+&lt;p class="last"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Quisque eget est eget odio vulputate accumsan.
+Curabitur tincidunt varius venenatis.
+Cras scelerisque sagittis erat vel imperdiet.
+In pretium vitae nibh et dictum.
+Ut et ullamcorper enim.
+Vivamus ultrices, odio vitae dapibus aliquet,
+magna mi iaculis justo, at malesuada neque sem non.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonition hint"&gt;
+&lt;p class="first admonition-title"&gt;Hint&lt;/p&gt;
+&lt;p class="last"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Quisque eget est eget odio vulputate accumsan.
+Curabitur tincidunt varius venenatis.
+Cras scelerisque sagittis erat vel imperdiet.
+In pretium vitae nibh et dictum.
+Ut et ullamcorper enim.
+Vivamus ultrices, odio vitae dapibus aliquet,
+magna mi iaculis justo, at malesuada neque sem non.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p class="last"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Quisque eget est eget odio vulputate accumsan.
+Curabitur tincidunt varius venenatis.
+Cras scelerisque sagittis erat vel imperdiet.
+In pretium vitae nibh et dictum.
+Ut et ullamcorper enim.
+Vivamus ultrices, odio vitae dapibus aliquet,
+magna mi iaculis justo, at malesuada neque sem non.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p class="last"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Quisque eget est eget odio vulputate accumsan.
+Curabitur tincidunt varius venenatis.
+Cras scelerisque sagittis erat vel imperdiet.
+In pretium vitae nibh et dictum.
+Ut et ullamcorper enim.
+Vivamus ultrices, odio vitae dapibus aliquet,
+magna mi iaculis justo, at malesuada neque sem non.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonition tip"&gt;
+&lt;p class="first admonition-title"&gt;Tip&lt;/p&gt;
+&lt;p class="last"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Quisque eget est eget odio vulputate accumsan.
+Curabitur tincidunt varius venenatis.
+Cras scelerisque sagittis erat vel imperdiet.
+In pretium vitae nibh et dictum.
+Ut et ullamcorper enim.
+Vivamus ultrices, odio vitae dapibus aliquet,
+magna mi iaculis justo, at malesuada neque sem non.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonition warning"&gt;
+&lt;p class="first admonition-title"&gt;Warning&lt;/p&gt;
+&lt;p class="last"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Quisque eget est eget odio vulputate accumsan.
+Curabitur tincidunt varius venenatis.
+Cras scelerisque sagittis erat vel imperdiet.
+In pretium vitae nibh et dictum.
+Ut et ullamcorper enim.
+Vivamus ultrices, odio vitae dapibus aliquet,
+magna mi iaculis justo, at malesuada neque sem non.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonition admonition-are-you-sure"&gt;
+&lt;p class="first admonition-title"&gt;Are you sure?&lt;/p&gt;
+&lt;p class="last"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Quisque eget est eget odio vulputate accumsan.
+Curabitur tincidunt varius venenatis.
+Cras scelerisque sagittis erat vel imperdiet.
+In pretium vitae nibh et dictum.
+Ut et ullamcorper enim.
+Vivamus ultrices, odio vitae dapibus aliquet,
+magna mi iaculis justo, at malesuada neque sem non.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="images"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;2&amp;nbsp;&amp;nbsp;&amp;nbsp;Images&lt;/a&gt;&lt;/h2&gt;
+&lt;img alt="sample image" src="images/sample.png" style="height: 200px;" /&gt;
+&lt;p&gt;Alignment simply should not be used here.&lt;/p&gt;
+&lt;div class="section" id="inline-images"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id4"&gt;2.1&amp;nbsp;&amp;nbsp;&amp;nbsp;Inline Images&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This is an image aligned &lt;img alt="sample inline" class="align-top" src="images/sample.png" style="height: 50px;" /&gt; top,
+this middle &lt;img alt="sample inline" class="align-middle" src="images/sample.png" style="height: 50px;" /&gt; and this bottom &lt;img alt="sample inline" class="align-bottom" src="images/sample.png" style="height: 50px;" /&gt;.&lt;/p&gt;
+&lt;p&gt;With proper &lt;tt class="docutils literal"&gt;css&lt;/tt&gt; it works.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="figures"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;3&amp;nbsp;&amp;nbsp;&amp;nbsp;Figures&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="sample figure" src="images/sample.png" style="height: 100px;" /&gt;
+&lt;p class="caption"&gt;This is the caption of the figure (a simple paragraph).&lt;/p&gt;
+&lt;div class="legend"&gt;
+&lt;p&gt;The legend consists of all elements after the caption.  In this
+case, the legend consists of this paragraph and the following
+table:&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="36%" /&gt;
+&lt;col width="64%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Symbol&lt;/th&gt;
+&lt;th class="head"&gt;Meaning&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;Campground&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;B&lt;/td&gt;
+&lt;td&gt;Lake&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;Mountain&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This is not part of the figure.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="body-elements"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;4&amp;nbsp;&amp;nbsp;&amp;nbsp;Body Elements&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="section" id="topic"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id7"&gt;4.1&amp;nbsp;&amp;nbsp;&amp;nbsp;Topic&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="topic"&gt;
+&lt;p class="topic-title first"&gt;Topic Title&lt;/p&gt;
+&lt;p&gt;Subsequent indented lines comprise
+the body of the topic, and are
+interpreted as body elements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sidebar"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id8"&gt;4.2&amp;nbsp;&amp;nbsp;&amp;nbsp;Sidebar&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first sidebar-title"&gt;Sidebar Title&lt;/p&gt;
+&lt;p class="sidebar-subtitle"&gt;Optional Sidebar Subtitle&lt;/p&gt;
+&lt;p class="last"&gt;Subsequent indented lines comprise
+the body of the sidebar, and are
+interpreted as body elements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="line-block"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id9"&gt;4.3&amp;nbsp;&amp;nbsp;&amp;nbsp;Line Block&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&amp;quot;To Ma Own Beloved Lassie: A Poem on her 17th Birthday&amp;quot;, by
+Ewan McTeagle (for Lassie O'Shea):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Lend us a couple of bob till Thursday.&lt;/div&gt;
+&lt;div class="line"&gt;I'm absolutely skint.&lt;/div&gt;
+&lt;div class="line"&gt;But I'm expecting a postal order and I can pay you back&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;as soon as it comes.&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line"&gt;Love, Ewan.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="parsed-literal-block"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id10"&gt;4.4&amp;nbsp;&amp;nbsp;&amp;nbsp;Parsed Literal Block&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Not supported.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="code"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id11"&gt;4.5&amp;nbsp;&amp;nbsp;&amp;nbsp;Code&lt;/a&gt;&lt;/h3&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;my_function&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;just a test&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Use &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;code-block&lt;/span&gt;&lt;/tt&gt; instead.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="math"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id12"&gt;4.6&amp;nbsp;&amp;nbsp;&amp;nbsp;Math&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="formula"&gt;
+&lt;i&gt;α&lt;/i&gt;&lt;sub&gt;&lt;i&gt;t&lt;/i&gt;&lt;/sub&gt;(&lt;i&gt;i&lt;/i&gt;) = &lt;i&gt;P&lt;/i&gt;(&lt;i&gt;O&lt;/i&gt;&lt;sub&gt;1&lt;/sub&gt;, &lt;i&gt;O&lt;/i&gt;&lt;sub&gt;2&lt;/sub&gt;, …&lt;i&gt;O&lt;/i&gt;&lt;sub&gt;&lt;i&gt;t&lt;/i&gt;&lt;/sub&gt;, &lt;i&gt;q&lt;/i&gt;&lt;sub&gt;&lt;i&gt;t&lt;/i&gt;&lt;/sub&gt; = &lt;i&gt;S&lt;/i&gt;&lt;sub&gt;&lt;i&gt;i&lt;/i&gt;&lt;/sub&gt;&lt;i&gt;λ&lt;/i&gt;)
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="rubric"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id13"&gt;4.7&amp;nbsp;&amp;nbsp;&amp;nbsp;Rubric&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;It is a big question mark...&lt;/p&gt;
+&lt;p class="rubric"&gt;Something&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="epigraph"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id14"&gt;4.8&amp;nbsp;&amp;nbsp;&amp;nbsp;Epigraph&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote class="epigraph"&gt;
+&lt;p&gt;No matter where you go, there you are.&lt;/p&gt;
+&lt;p class="attribution"&gt;&amp;mdash;Buckaroo Banzai&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="highlights"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id15"&gt;4.9&amp;nbsp;&amp;nbsp;&amp;nbsp;Highlights&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote class="highlights"&gt;
+This maybe?&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="pull-quote"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id16"&gt;4.10&amp;nbsp;&amp;nbsp;&amp;nbsp;Pull-Quote&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote class="pull-quote"&gt;
+This is...
+a pull quote.&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="compound-paragraph"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id17"&gt;4.11&amp;nbsp;&amp;nbsp;&amp;nbsp;Compound Paragraph&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="compound"&gt;
+&lt;p class="compound-first"&gt;The 'rm' command is very dangerous.  If you are logged
+in as root and enter&lt;/p&gt;
+&lt;pre class="compound-middle literal-block"&gt;
+cd /
+rm -rf *
+&lt;/pre&gt;
+&lt;p class="compound-last"&gt;you will erase the entire contents of your file system.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="container"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id18"&gt;4.12&amp;nbsp;&amp;nbsp;&amp;nbsp;Container&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="custom docutils container"&gt;
+This paragraph might be rendered in a custom way.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tables"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id19"&gt;5&amp;nbsp;&amp;nbsp;&amp;nbsp;Tables&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="section" id="table"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id20"&gt;5.1&amp;nbsp;&amp;nbsp;&amp;nbsp;Table&lt;/a&gt;&lt;/h3&gt;
+&lt;table border="1" class="colwidths-auto docutils"&gt;
+&lt;caption&gt;Truth table for &amp;quot;not&amp;quot;&lt;/caption&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;A&lt;/th&gt;
+&lt;th class="head"&gt;not A&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;False&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table border="1" class="colwidths-given docutils"&gt;
+&lt;caption&gt;Truth table for &amp;quot;not&amp;quot;&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col width="23%" /&gt;
+&lt;col width="77%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;A&lt;/th&gt;
+&lt;th class="head"&gt;not A&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;False&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="csv-table"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id21"&gt;5.2&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;tt class="docutils literal"&gt;CSV&lt;/tt&gt; Table&lt;/a&gt;&lt;/h3&gt;
+&lt;table border="1" class="colwidths-given docutils"&gt;
+&lt;caption&gt;Frozen Delights!&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col width="27%" /&gt;
+&lt;col width="18%" /&gt;
+&lt;col width="55%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Treat&lt;/th&gt;
+&lt;th class="head"&gt;Quantity&lt;/th&gt;
+&lt;th class="head"&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Albatross&lt;/td&gt;
+&lt;td&gt;2.99&lt;/td&gt;
+&lt;td&gt;On a stick!&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Crunchy Frog&lt;/td&gt;
+&lt;td&gt;1.49&lt;/td&gt;
+&lt;td&gt;If we took the bones out, it wouldn't be
+crunchy, now would it?&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Gannet Ripple&lt;/td&gt;
+&lt;td&gt;1.99&lt;/td&gt;
+&lt;td&gt;On a stick!&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="list-table"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id22"&gt;5.3&amp;nbsp;&amp;nbsp;&amp;nbsp;List Table&lt;/a&gt;&lt;/h3&gt;
+&lt;table border="1" class="colwidths-given docutils"&gt;
+&lt;caption&gt;Frozen Delights!&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col width="27%" /&gt;
+&lt;col width="18%" /&gt;
+&lt;col width="55%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Treat&lt;/th&gt;
+&lt;th class="head"&gt;Quantity&lt;/th&gt;
+&lt;th class="head"&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Albatross&lt;/td&gt;
+&lt;td&gt;2.99&lt;/td&gt;
+&lt;td&gt;On a stick!&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Crunchy Frog&lt;/td&gt;
+&lt;td&gt;1.49&lt;/td&gt;
+&lt;td&gt;If we took the bones out, it wouldn't be
+crunchy, now would it?&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Gannet Ripple&lt;/td&gt;
+&lt;td&gt;1.99&lt;/td&gt;
+&lt;td&gt;On a stick!&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="document-parts"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id23"&gt;6&amp;nbsp;&amp;nbsp;&amp;nbsp;Document Parts&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="section" id="table-of-contents"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id24"&gt;6.1&amp;nbsp;&amp;nbsp;&amp;nbsp;Table of Contents&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="contents topic" id="id1"&gt;
+&lt;p class="topic-title first"&gt;Table of Contents&lt;/p&gt;
+&lt;ul class="auto-toc simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#admonitions" id="id2"&gt;1&amp;nbsp;&amp;nbsp;&amp;nbsp;Admonitions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#images" id="id3"&gt;2&amp;nbsp;&amp;nbsp;&amp;nbsp;Images&lt;/a&gt;&lt;ul class="auto-toc"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#inline-images" id="id4"&gt;2.1&amp;nbsp;&amp;nbsp;&amp;nbsp;Inline Images&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#figures" id="id5"&gt;3&amp;nbsp;&amp;nbsp;&amp;nbsp;Figures&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#body-elements" id="id6"&gt;4&amp;nbsp;&amp;nbsp;&amp;nbsp;Body Elements&lt;/a&gt;&lt;ul class="auto-toc"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#topic" id="id7"&gt;4.1&amp;nbsp;&amp;nbsp;&amp;nbsp;Topic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#sidebar" id="id8"&gt;4.2&amp;nbsp;&amp;nbsp;&amp;nbsp;Sidebar&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#line-block" id="id9"&gt;4.3&amp;nbsp;&amp;nbsp;&amp;nbsp;Line Block&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#parsed-literal-block" id="id10"&gt;4.4&amp;nbsp;&amp;nbsp;&amp;nbsp;Parsed Literal Block&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#code" id="id11"&gt;4.5&amp;nbsp;&amp;nbsp;&amp;nbsp;Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#math" id="id12"&gt;4.6&amp;nbsp;&amp;nbsp;&amp;nbsp;Math&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#rubric" id="id13"&gt;4.7&amp;nbsp;&amp;nbsp;&amp;nbsp;Rubric&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#epigraph" id="id14"&gt;4.8&amp;nbsp;&amp;nbsp;&amp;nbsp;Epigraph&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#highlights" id="id15"&gt;4.9&amp;nbsp;&amp;nbsp;&amp;nbsp;Highlights&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#pull-quote" id="id16"&gt;4.10&amp;nbsp;&amp;nbsp;&amp;nbsp;Pull-Quote&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#compound-paragraph" id="id17"&gt;4.11&amp;nbsp;&amp;nbsp;&amp;nbsp;Compound Paragraph&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#container" id="id18"&gt;4.12&amp;nbsp;&amp;nbsp;&amp;nbsp;Container&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#tables" id="id19"&gt;5&amp;nbsp;&amp;nbsp;&amp;nbsp;Tables&lt;/a&gt;&lt;ul class="auto-toc"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#table" id="id20"&gt;5.1&amp;nbsp;&amp;nbsp;&amp;nbsp;Table&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#csv-table" id="id21"&gt;5.2&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;tt class="docutils literal"&gt;CSV&lt;/tt&gt; Table&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#list-table" id="id22"&gt;5.3&amp;nbsp;&amp;nbsp;&amp;nbsp;List Table&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#document-parts" id="id23"&gt;6&amp;nbsp;&amp;nbsp;&amp;nbsp;Document Parts&lt;/a&gt;&lt;ul class="auto-toc"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#table-of-contents" id="id24"&gt;6.1&amp;nbsp;&amp;nbsp;&amp;nbsp;Table of Contents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#automatic-section-numbering" id="id25"&gt;6.2&amp;nbsp;&amp;nbsp;&amp;nbsp;Automatic Section Numbering&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="automatic-section-numbering"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id25"&gt;6.2&amp;nbsp;&amp;nbsp;&amp;nbsp;Automatic Section Numbering&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;All the other features are not supported.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content></entry><entry><title>Quickstart</title><link href="https://railwaycoding.net/quickstart.html" rel="alternate"></link><published>2017-11-11T00:00:00+01:00</published><updated>2017-11-11T00:00:00+01:00</updated><author><name>Richard Bann</name></author><id>tag:railwaycoding.net,2017-11-11:/quickstart.html</id><summary type="html">&lt;p class="first"&gt;ReStructuredText showcase based on
+&lt;a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickstart.html"&gt;http://docutils.sourceforge.net/docs/user/rst/quickstart.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Some extra markup can go to summary, here we provide a minimal &lt;tt class="docutils literal"&gt;python&lt;/tt&gt; code:&lt;/p&gt;
+&lt;div class="last"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ENV_VAR&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="structure-of-restructuredtext"&gt;
+&lt;h2&gt;Structure (of &lt;tt class="docutils literal"&gt;ReStructuredText&lt;/tt&gt;)&lt;/h2&gt;
+&lt;p&gt;This is a paragraph.  It's quite
+short.&lt;/p&gt;
+&lt;blockquote&gt;
+This paragraph will result in an indented block of
+text, typically used for quoting other text.&lt;/blockquote&gt;
+&lt;p&gt;This is another one.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="text-styles"&gt;
+&lt;h2&gt;Text styles&lt;/h2&gt;
+&lt;p&gt;This is how to use &lt;em&gt;italics&lt;/em&gt; and &lt;strong&gt;bold&lt;/strong&gt; text.
+This markup can not be used in &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;fixed-space&lt;/span&gt; literals (*not italic*)&lt;/tt&gt;.
+Use backslash for *text* that would otherwise be processed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="lists"&gt;
+&lt;h2&gt;Lists&lt;/h2&gt;
+&lt;div class="section" id="enumerated-lists"&gt;
+&lt;h3&gt;Enumerated Lists&lt;/h3&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;numbers&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol class="upperalpha"&gt;
+&lt;li&gt;&lt;p class="first"&gt;upper-case letters
+and it goes over many lines&lt;/p&gt;
+&lt;p&gt;with two paragraphs and all!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol class="loweralpha simple"&gt;
+&lt;li&gt;lower-case letters&lt;ol class="arabic" start="3"&gt;
+&lt;li&gt;with a sub-list starting at a different number&lt;/li&gt;
+&lt;li&gt;make sure the numbers are in the correct sequence though!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol class="upperroman simple"&gt;
+&lt;li&gt;upper-case roman numerals&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol class="lowerroman simple"&gt;
+&lt;li&gt;lower-case roman numerals&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;numbers again&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;and again&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bulleted-lists"&gt;
+&lt;h3&gt;Bulleted Lists&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;a bullet point using &amp;quot;*&amp;quot;&lt;ul&gt;
+&lt;li&gt;a sub-list using &amp;quot;-&amp;quot;&lt;ul&gt;
+&lt;li&gt;yet another sub-list&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;another item&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="preformatting"&gt;
+&lt;h2&gt;Preformatting&lt;/h2&gt;
+&lt;p&gt;An example:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+  Whitespace, newlines, blank lines, and all kinds of markup
+    (like *this* or \this) is preserved by literal blocks.
+Lookie here, I've dropped an indentation level
+(but not far enough)
+&lt;/pre&gt;
+&lt;p&gt;no more example&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+This is preformatted text, and the
+last &amp;quot;::&amp;quot; paragraph is removed
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="images"&gt;
+&lt;h2&gt;Images&lt;/h2&gt;
+&lt;img alt="sample image" src="images/sample.png" /&gt;
+&lt;p&gt;This is too big. This is how we can reduce the size - set &lt;tt class="docutils literal"&gt;height&lt;/tt&gt;:&lt;/p&gt;
+&lt;img alt="sample image" src="images/sample.png" style="height: 300px;" /&gt;
+&lt;p&gt;or set &lt;tt class="docutils literal"&gt;width&lt;/tt&gt;:&lt;/p&gt;
+&lt;img alt="sample image" src="images/sample.png" style="width: 300px;" /&gt;
+&lt;p&gt;or set both:&lt;/p&gt;
+&lt;img alt="sample image" src="images/sample.png" style="width: 300px; height: 300px;" /&gt;
+&lt;/div&gt;
+</content></entry></feed>

@@ -4,7 +4,7 @@ services:
   nginx:
     build: .
     volumes:
-      - "./site/output:/site/output"
+      - "./site/deploy:/html"
       - "./.env-files/railwaycoding.net.crt:/.env-files/railwaycoding.net.crt"
       - "./.env-files/railwaycoding.net.key:/.env-files/railwaycoding.net.key"
     stop_signal: SIGTERM

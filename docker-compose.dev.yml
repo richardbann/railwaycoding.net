@@ -13,5 +13,6 @@ services:
   nginx:
     volumes:
       - "./nginx.conf:/etc/nginx/nginx.conf"
+      - "./site/output:/html"
       - "./.env-files/railwaycoding.dev.crt:/.env-files/railwaycoding.net.crt"
       - "./.env-files/railwaycoding.dev.key:/.env-files/railwaycoding.net.key"

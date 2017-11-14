@@ -7,10 +7,15 @@ usr := $(shell id -u):$(shell id -g)
 run:
 	docker-compose run --rm pelican bash
 
-.PHONY: create
-create:
+.PHONY: build
+build:
 	rm -rf site/output
 	docker-compose run --rm -u $(usr) -w "/site" pelican pelican
+
+.PHONY: deploy
+deploy:
+	rm -rf site/deploy
+	docker-compose run --rm -u $(usr) -w "/site" pelican pelican -s publishconf.py -o deploy
 
 .PHONY: gencerts
 COMMON_NAME := railwaycoding.dev
