@@ -1,64 +1,134 @@
 SHELL=/bin/bash
 
 usr := $(shell id -u):$(shell id -g)
+ts := $(shell date -u +%Y-%m-%d-%H-%M-%S-%Z)
+img := richardbann/railwaycoding
 
+################################################################################
+.PHONY: docker-build
 
-.PHONY: run
-run:
-	docker-compose run --rm pelican bash
+# Build docker image
+docker-build:
+	docker build -t $(img) .
+	docker tag $(img) $(img):$(ts)
 
-.PHONY: build-dev
-build-dev:
-	rm -rf site/output/*
-	docker-compose run --rm -u $(usr) -w "/site" pelican pelican
+################################################################################
+.PHONY: docker-push
 
-.PHONY: build-prod
-build-prod:
-	rm -rf site/deploy/*
-	docker-compose run --rm -u $(usr) -w "/site" pelican pelican -s publishconf.py -o deploy
+# Push to registry
+docker-push: docker-build
+	docker push $(img)
+	docker push $(img):$(ts)
 
-.PHONY: deploy
-deploy:
-	ssh railwaycoding.net "cd /opt/railwaycoding.net && git pull"
+################################################################################
+.PHONY: one-off
 
+# one-off terminal as root for development
+one-off:
+	@docker run -it --rm \
+		-v "$(CURDIR)/.env-files:/.env-files" \
+		-v "$(CURDIR)/nginx.conf:/etc/nginx/nginx.conf" \
+		-v "$(CURDIR)/site:/site" \
+		$(img) bash
+
+################################################################################
+define pelican =
+	mkdir -p site/$(outdir)
+	rm -rf site/$(outdir)/*
+	docker run -t --rm \
+		-v "$(CURDIR)/site:/site" \
+		-u "$(usr)" \
+		-w "/site" \
+		$(img) pelican
+endef
+
+################################################################################
+.PHONY: dev-build
+dev-build: outdir = output
+
+# build the output directory for testing
+dev-build:
+	$(pelican)
+
+################################################################################
+.PHONY: prod-build
+prod-build: outdir = deploy
+
+# build the deploy directory with publishconf as settings
+prod-build:
+	$(pelican) -o $(outdir) -s publishconf.py
+
+################################################################################
 .PHONY: gencerts
-COMMON_NAME := railwaycoding.dev
-SUBJECT_ALT_NAMES := "DNS:$(COMMON_NAME),DNS:localhost,IP:127.0.0.1"
+
+common_name := railwaycoding.dev
+cert_name := railwaycoding.net
+subject_alt_names := DNS:$(common_name),DNS:localhost,IP:127.0.0.1
+
+san_row := printf "[SAN]\nsubjectAltName=%s" "$(subject_alt_names)"
+openssl_conf := cat /etc/ssl/openssl.cnf <($(san_row))
+
+# generate self signed certificates for local development
 gencerts:
 	rm -rf .env-files/*.{crt,key,csr}
 
 	# generate certificate authority private key
-	@openssl genrsa -out ".env-files/$(COMMON_NAME)-ca.key" 2048
+	@openssl genrsa -out ".env-files/$(cert_name)-ca.key" 2048
 
 	# self signed CA certificate
-	@openssl req -x509 -new -nodes -subj "/commonName=$(COMMON_NAME)-ca" \
-	        -key ".env-files/$(COMMON_NAME)-ca.key" -sha256 -days 1024 \
-					-out ".env-files/$(COMMON_NAME)-ca.crt"
+	@openssl req -x509 -new -nodes -subj "/commonName=$(common_name)-ca" \
+	        -key ".env-files/$(cert_name)-ca.key" -sha256 -days 1024 \
+					-out ".env-files/$(cert_name)-ca.crt"
 
 	# generate private key for the server
-	@openssl genrsa -out ".env-files/$(COMMON_NAME).key" 2048
+	@openssl genrsa -out ".env-files/$(cert_name).key" 2048
 
 	# certificate request
-	@openssl req -new -sha256 -subj "/commonName=$COMMON_NAME" \
-	        -key ".env-files/$(COMMON_NAME).key" -reqexts SAN \
-					-out ".env-files/$(COMMON_NAME).csr" \
-	        -config <(cat /etc/ssl/openssl.cnf \
-	                  <(printf "[SAN]\nsubjectAltName=%s" "$(SUBJECT_ALT_NAMES)"))
+	@openssl req -new -sha256 -subj "/commonName=$(common_name)" \
+	        -key ".env-files/$(cert_name).key" -reqexts SAN \
+					-out ".env-files/$(cert_name).csr" \
+	        -config <($(openssl_conf))
 
 	# sign the certificate with CA
-	@openssl x509 -req -in ".env-files/$(COMMON_NAME).csr" \
-	        -CA ".env-files/$(COMMON_NAME)-ca.crt" \
-					-CAkey ".env-files/$(COMMON_NAME)-ca.key" \
-	        -out ".env-files/$(COMMON_NAME).crt" -days 500 -sha256 \
+	@openssl x509 -req -in ".env-files/$(cert_name).csr" \
+	        -CA ".env-files/$(cert_name)-ca.crt" \
+					-CAkey ".env-files/$(cert_name)-ca.key" \
+	        -out ".env-files/$(cert_name).crt" -days 500 -sha256 \
 					-extensions SAN -CAcreateserial \
-					-CAserial ".env-files/$(COMMON_NAME)-ca.srl" \
-	        -extfile <(cat /etc/ssl/openssl.cnf \
-	                   <(printf "[SAN]\nsubjectAltName=%s" "$(SUBJECT_ALT_NAMES)"))
+					-CAserial ".env-files/$(cert_name)-ca.srl" \
+	        -extfile <($(openssl_conf))
 
-.PHONY: up
-up:
-	docker-compose up -d nginx
+################################################################################
+.PHONY: docker-down
 
-.PHONY: down
-down:
-	docker-compose down
+# stop and remove all containers
+docker-down:
+	-docker stop railwaycoding_dev-server_nginx
+	-docker stop railwaycoding_dev-server_pelican
+	-docker rm railwaycoding_dev-server_nginx
+	-docker rm railwaycoding_dev-server_pelican
+
+################################################################################
+.PHONY: dev-serve
+
+# start a web server and pelican in regenerate mode
+dev-serve: docker-down
+	docker run -d \
+		-v "$(CURDIR)/site:/site" \
+		-w /site \
+		--stop-signal SIGINT \
+		--name railwaycoding_dev-server_pelican \
+		$(img) pelican -r
+
+	docker run -d \
+		-v "$(CURDIR)/.env-files:/.env-files" \
+		-v "$(CURDIR)/nginx.conf:/etc/nginx/nginx.conf" \
+		-v "$(CURDIR)/site/output:/site" \
+		-p 80:80 -p 443:443 \
+		--name railwaycoding_dev-server_nginx \
+		$(img) nginx -g "daemon off;"
+
+################################################################################
+.PHONY: deploy
+
+deploy: prod-build
