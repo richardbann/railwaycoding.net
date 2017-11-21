@@ -5,25 +5,41 @@ ts := $(shell date -u +%Y-%m-%d-%H-%M-%S-%Z)
 img := richardbann/railwaycoding
 
 ################################################################################
+# self documenting makefile
+################################################################################
+.DEFAULT_GOAL := help
+.PHONY: help
+## print available targets
+help: bold = $(shell tput bold; tput setaf 3)
+help: reset = $(shell tput sgr0)
+help:
+	@echo
+	@sed -nr \
+		-e '/^## /{s/^## /    /;h;:a;n;/^## /{s/^## /    /;H;ba};' \
+		-e '/^[[:alnum:]_\-]+:/ {s/(.+):.*$$/$(bold)\1$(reset):/;G;p};' \
+		-e 's/^[[:alnum:]_\-]+://;x}' ${MAKEFILE_LIST}
+	@echo
+
+################################################################################
 .PHONY: docker-build
 
-# Build docker image
+## Build the docker image and tag it with the build timestamp
 docker-build:
-	docker build -t $(img) .
-	docker tag $(img) $(img):$(ts)
+	docker build -t $(img):latest .
+	docker tag $(img):latest $(img):$(ts)
 
 ################################################################################
 .PHONY: docker-push
 
-# Push to registry
+## Push to docker registry
 docker-push: docker-build
-	docker push $(img)
+	docker push $(img):latest
 	docker push $(img):$(ts)
 
 ################################################################################
 .PHONY: one-off
 
-# one-off terminal as root for development
+## launch a one-off terminal (as root) for development
 one-off:
 	@docker run -it --rm \
 		-v "$(CURDIR)/.env-files:/.env-files" \
@@ -44,17 +60,17 @@ endef
 
 ################################################################################
 .PHONY: dev-build
-dev-build: outdir = output
 
-# build the output directory for testing
+## build the output directory for testing
+dev-build: outdir = output
 dev-build:
 	$(pelican)
 
 ################################################################################
 .PHONY: prod-build
-prod-build: outdir = deploy
 
-# build the deploy directory with publishconf as settings
+## build the deploy directory with production settings (publishconf.py)
+prod-build: outdir = deploy
 prod-build:
 	$(pelican) -o $(outdir) -s publishconf.py
 
@@ -68,7 +84,7 @@ subject_alt_names := DNS:$(common_name),DNS:localhost,IP:127.0.0.1
 san_row := printf "[SAN]\nsubjectAltName=%s" "$(subject_alt_names)"
 openssl_conf := cat /etc/ssl/openssl.cnf <($(san_row))
 
-# generate self signed certificates for local development
+## generate self signed certificates for local development
 gencerts:
 	rm -rf .env-files/*.{crt,key,csr}
 
@@ -101,7 +117,7 @@ gencerts:
 ################################################################################
 .PHONY: docker-down
 
-# stop and remove all containers
+## stop and remove all containers
 docker-down:
 	-docker stop railwaycoding_dev-server_nginx
 	-docker stop railwaycoding_dev-server_pelican
@@ -111,7 +127,7 @@ docker-down:
 ################################################################################
 .PHONY: dev-serve
 
-# start a web server and pelican in regenerate mode
+## start a web server and pelican in "regenerate" mode
 dev-serve: docker-down
 	docker run -d \
 		-v "$(CURDIR)/site:/site" \
@@ -129,6 +145,10 @@ dev-serve: docker-down
 		$(img) nginx -g "daemon off;"
 
 ################################################################################
-.PHONY: deploy
+.PHONY: deploy-content
 
-deploy: prod-build
+## build and deploy the production content
+deploy-content: prod-build
+	scp Makefile railwaycoding.net:/opt/railwaycoding.net/makefile
+	rsync -r -E --del -c \
+		site/deploy/ railwaycoding.net:/opt/railwaycoding.net/site/
