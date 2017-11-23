@@ -148,6 +148,7 @@ dev-serve: docker-down
 .PHONY: deploy-content
 
 ## build and deploy the production content
+##     copies Makefile (to ./makefile) and site/deploy to ./site
 deploy-content: prod-build
 	scp Makefile railwaycoding.net:/opt/railwaycoding.net/makefile
 	rsync -r -E --del -c \
