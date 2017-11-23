@@ -39,7 +39,8 @@ docker-push: docker-build
 ################################################################################
 .PHONY: one-off
 
-## launch a one-off terminal (as root) for development
+## launch a one-off terminal (as root), configured the same way as the
+## production container
 one-off:
 	@docker run -it --rm \
 		-v "$(CURDIR)/.env-files:/.env-files" \
@@ -48,6 +49,17 @@ one-off:
 		$(img) bash
 
 ################################################################################
+.PHONY: one-off-me
+
+## launch a one-off terminal (as the current user)
+one-off-me:
+	@docker run -it --rm -u $(usr) \
+		-v "$(CURDIR):/railwaycoding.net" \
+		-w "/railwaycoding.net" \
+		$(img) bash
+
+################################################################################
+
 define pelican =
 	mkdir -p site/$(outdir)
 	rm -rf site/$(outdir)/*
